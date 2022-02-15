@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<script
+			src="https://kit.fontawesome.com/ca01b450db.js"
+			crossorigin="anonymous"
+		></script>
+
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Montserrat&family=Poppins:ital@1&family=Roboto:ital@1&display=swap"
+			rel="stylesheet"
+		/>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="./css/reset.css" />
+		<link rel="stylesheet" href="./css/main.css" />
+		<script src="./JS/main.js" defer type="module"></script>
+		<title>Weather</title>
+	</head>
+	<body>
+		<main>
+			<div class="search-container">
+				<form action="/">
+					<input type="search" placeholder="Enter Location" />
+					<button>
+						<i class="fa fa-search"></i>
+					</button>
+				</form>
+			</div>
+			<div class="today-weather-container">
+				<div class="today">
+					<p>Today</p>
+					<p class="date">Tue, 12 Feb</p>
+				</div>
+				<div class="temperature-container">
+					<h1 class="temperature">30 <span>c</span></h1>
+					<div class="icon-container">
+						<i class="fa fa-cloud weather-icon"></i>
+					</div>
+				</div>
+				<div class="extra-info">
+					<div class="wind">
+						<i class="fa fa-wind"></i>
+						<span>12 km/h</span>
+					</div>
+					<div class="humidity">
+						<i class="fa fa-droplet icon"></i>
+						<span>68 %</span>
+					</div>
+				</div>
+				<div class="location">
+					<i class="fa fa-location-dot icon"></i>
+					Tbilisi, Georgia
+				</div>
+			</div>
+			<div class="5-day-forcast">
+				<h3>5 Day Forecast</h3>
+				<div class="week-container">
+					<div class="day">
+						<p>Monday</p>
+						<p>25 c</p>
+						<i>thunder</i>
+					</div>
+					<div class="day">
+						<p>Monday</p>
+						<p>25 c</p>
+						<i>thunder</i>
+					</div>
+					<div class="day">
+						<p>Monday</p>
+						<p>25 c</p>
+						<i>thunder</i>
+					</div>
+					<div class="day">
+						<p>Monday</p>
+						<p>25 c</p>
+						<i>thunder</i>
+					</div>
+					<div class="day">
+						<p>Monday</p>
+						<p>25 c</p>
+						<i>thunder</i>
+					</div>
+				</div>
+			</div>
+		</main>
+	</body>
+</html>
