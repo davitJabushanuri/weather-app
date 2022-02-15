@@ -48,6 +48,7 @@ main {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  cursor: pointer;
 }
 
 .today-weather-container {
@@ -79,11 +80,14 @@ main {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+  gap: 1rem;
 }
 
 .today-weather-container .temperature-container .current-temp {
@@ -104,6 +108,10 @@ main {
 .today-weather-container .temperature-container .current-temp p {
   font-size: 40px;
   font-weight: bold;
+}
+
+.today-weather-container .temperature-container .weather-icon {
+  height: 150px;
 }
 
 .today-weather-container .extra-info {
@@ -138,10 +146,6 @@ main {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-}
-
-.weather-icon {
-  font-size: 50px;
 }
 
 .week-container {

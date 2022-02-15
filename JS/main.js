@@ -15,11 +15,12 @@ const getLocation = async (e) => {
 const getWeatherData = async (lat, lon) => {
 	const url = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=metric&exclude=minutely,hourly&appid=${API_KEY}`;
 	const data = await fetch(url);
-	const weather = await data.json();
-
-	temperature.innerText = weather.current.temp;
-	windSpeed.innerText = weather.current.wind_speed;
-	humidity.innerText = weather.current.humidity;
+	const weatherData = await data.json();
+	const { icon } = weatherData.current.weather[0];
+	temperature.innerText = weatherData.current.temp;
+	windSpeed.innerText = weatherData.current.wind_speed;
+	humidity.innerText = weatherData.current.humidity;
+	weatherIcon.src = `https://openweathermap.org/img/wn/${icon}@2x.png`;
 };
 
 const toggleFahrenheit = () => {
@@ -27,12 +28,12 @@ const toggleFahrenheit = () => {
 		unit.innerText = 'F';
 		const c = temperature.innerText;
 		const f = (c * 9) / 5 + 32;
-		temperature.innerText = f;
+		temperature.innerText = f.toFixed(2);
 	} else {
 		unit.innerText = 'C';
 		const f = temperature.innerText;
 		const c = (f - 32) / 1.8;
-		temperature.innerText = c;
+		temperature.innerText = c.toFixed(2);
 	}
 };
 
@@ -41,6 +42,7 @@ const temperature = document.querySelector('.temperature');
 const windSpeed = document.querySelector('.wind-speed');
 const humidity = document.querySelector('.humidity-percent');
 const location = document.querySelector('.location-current');
+const weatherIcon = document.querySelector('.weather-icon');
 const tempContainer = document.querySelector('.current-temp');
 const unit = document.querySelector('.unit');
 

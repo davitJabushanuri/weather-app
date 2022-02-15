@@ -32,6 +32,7 @@ main {
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		cursor: pointer;
 	}
 }
 
@@ -55,8 +56,9 @@ main {
 	.temperature-container {
 		margin-top: 1rem;
 		display: flex;
+		flex-direction: column;
 		align-items: center;
-		justify-content: space-around;
+		gap: 1rem;
 
 		.current-temp {
 			display: flex;
@@ -72,6 +74,10 @@ main {
 				font-size: 40px;
 				font-weight: bold;
 			}
+		}
+
+		.weather-icon {
+			height: 150px;
 		}
 	}
 
@@ -94,10 +100,6 @@ main {
 	display: flex;
 	gap: 1rem;
 	align-items: center;
-}
-
-.weather-icon {
-	font-size: 50px;
 }
 
 .week-container {
