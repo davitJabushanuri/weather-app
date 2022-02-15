@@ -58,8 +58,20 @@ main {
 		align-items: center;
 		justify-content: space-around;
 
-		h1 {
-			font-size: 50px;
+		.current-temp {
+			display: flex;
+			align-items: center;
+			gap: 1rem;
+			cursor: pointer;
+
+			h1 {
+				font-size: 50px;
+			}
+
+			p {
+				font-size: 40px;
+				font-weight: bold;
+			}
 		}
 	}
 
@@ -76,6 +88,12 @@ main {
 			gap: 8px;
 		}
 	}
+}
+
+.location {
+	display: flex;
+	gap: 1rem;
+	align-items: center;
 }
 
 .weather-icon {

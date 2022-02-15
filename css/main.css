@@ -86,8 +86,24 @@ main {
       justify-content: space-around;
 }
 
-.today-weather-container .temperature-container h1 {
+.today-weather-container .temperature-container .current-temp {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 1rem;
+  cursor: pointer;
+}
+
+.today-weather-container .temperature-container .current-temp h1 {
   font-size: 50px;
+}
+
+.today-weather-container .temperature-container .current-temp p {
+  font-size: 40px;
+  font-weight: bold;
 }
 
 .today-weather-container .extra-info {
@@ -112,6 +128,16 @@ main {
       -ms-flex-align: center;
           align-items: center;
   gap: 8px;
+}
+
+.location {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 1rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .weather-icon {
