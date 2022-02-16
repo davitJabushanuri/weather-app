@@ -114,6 +114,10 @@ main {
   height: 150px;
 }
 
+.today-weather-container .temperature-container p {
+  text-align: center;
+}
+
 .today-weather-container .extra-info {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -167,5 +171,20 @@ main {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+}
+
+.week-icon {
+  height: 50px;
+}
+
+.day-night {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 1rem;
+}
+
+.dark {
+  color: gray;
 }
 /*# sourceMappingURL=main.css.map */

@@ -79,6 +79,10 @@ main {
 		.weather-icon {
 			height: 150px;
 		}
+
+		p {
+			text-align: center;
+		}
 	}
 
 	.extra-info {
@@ -112,4 +116,17 @@ main {
 		display: flex;
 		justify-content: space-between;
 	}
+}
+
+.week-icon {
+	height: 50px;
+}
+
+.day-night {
+	display: flex;
+	gap: 1rem;
+}
+
+.dark {
+	color: gray;
 }
