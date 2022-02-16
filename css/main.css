@@ -173,6 +173,10 @@ main {
           justify-content: space-between;
 }
 
+h3 {
+  margin-bottom: 2rem;
+}
+
 .week-icon {
   height: 50px;
 }
@@ -186,5 +190,9 @@ main {
 
 .dark {
   color: gray;
+}
+
+.week-day {
+  width: 100px;
 }
 /*# sourceMappingURL=main.css.map */

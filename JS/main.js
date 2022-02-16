@@ -18,6 +18,9 @@ const getWeatherData = async (lat, lon) => {
 	const weatherData = await data.json();
 	const { icon } = weatherData.current.weather[0];
 	displayDailyWeather(weatherData.daily);
+	const epoch = weatherData.current.dt;
+	const a = new Date(epoch * 1000).toDateString();
+	date.innerText = a;
 	temperature.innerText = weatherData.current.temp;
 	windSpeed.innerText = weatherData.current.wind_speed;
 	humidity.innerText = weatherData.current.humidity;
@@ -30,14 +33,25 @@ const displayDailyWeather = (days) => {
 	days.forEach((dayData) => {
 		const { day, night } = dayData.temp;
 		const { icon } = dayData.weather[0];
-		console.log(icon);
+		const epoch = dayData.dt;
+		const weekdays = [
+			'Sunday',
+			'Monday',
+			'Tuesday',
+			'Wednesday',
+			'Thursday',
+			'Friday',
+			'Saturday',
+		];
+		const a = new Date(epoch * 1000);
+		const weekday = weekdays[a.getDay()];
 
-		///////////////
 		const div = document.createElement('div');
 		div.classList.add('day');
 
 		const weekDay = document.createElement('p');
-		weekDay.innerText = `Today`;
+		weekDay.innerText = weekday;
+		weekDay.classList.add('week-day');
 		div.appendChild(weekDay);
 
 		const dayNight = document.createElement('div');
@@ -78,6 +92,7 @@ const tempContainer = document.querySelector('.current-temp');
 const unit = document.querySelector('.unit');
 const weatherDescription = document.querySelector('.weather-description');
 const weeklyForecast = document.querySelector('.week-container');
+const date = document.querySelector('.date');
 
 form.addEventListener('submit', getLocation);
 tempContainer.addEventListener('click', toggleFahrenheit);
