@@ -138,8 +138,10 @@ h3 {
 
 .day-night {
 	display: flex;
-	gap: 0.5rem;
-	width: 120px;
+
+	p {
+		width: 70px;
+	}
 }
 
 .dark {
