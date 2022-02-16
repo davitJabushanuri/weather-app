@@ -3,7 +3,7 @@ const defaultCity = 'Barisakho';
 
 const displayDefaultCity = async () => {
 	const data = await fetch(
-		`http://api.openweathermap.org/geo/1.0/direct?q=${defaultCity}&limit=5&appid=${API_KEY}`,
+		`https://api.openweathermap.org/geo/1.0/direct?q=${defaultCity}&limit=5&appid=${API_KEY}`,
 		{
 			mode: 'cors',
 		}
@@ -18,7 +18,7 @@ const displayDefaultCity = async () => {
 const getLocation = async (e) => {
 	e.preventDefault();
 	const data = await fetch(
-		`http://api.openweathermap.org/geo/1.0/direct?q=${search.value}&limit=5&appid=${API_KEY}`,
+		`https://api.openweathermap.org/geo/1.0/direct?q=${search.value}&limit=5&appid=${API_KEY}`,
 		{
 			mode: 'cors',
 		}
