@@ -1,4 +1,16 @@
 const API_KEY = `8c43d0ea2c915987d0bd3f665e9427c1`;
+const defaultCity = 'Barisakho';
+
+const displayDefaultCity = async () => {
+	const data = await fetch(
+		`http://api.openweathermap.org/geo/1.0/direct?q=${defaultCity}&limit=5&appid=8c43d0ea2c915987d0bd3f665e9427c1`
+	);
+	const response = await data.json();
+	let { name, country } = response[0];
+	location.innerText = `${name}, ${country}`;
+	let { lat, lon } = response[0];
+	getWeatherData(lat, lon);
+};
 
 const getLocation = async (e) => {
 	e.preventDefault();
@@ -22,8 +34,8 @@ const getWeatherData = async (lat, lon) => {
 	const a = new Date(epoch * 1000).toDateString();
 	date.innerText = a;
 	temperature.innerText = weatherData.current.temp;
-	windSpeed.innerText = weatherData.current.wind_speed;
-	humidity.innerText = weatherData.current.humidity;
+	windSpeed.innerText = weatherData.current.wind_speed + ' km/h';
+	humidity.innerText = weatherData.current.humidity + ' %';
 	weatherIcon.src = `https://openweathermap.org/img/wn/${icon}@2x.png`;
 	weatherDescription.innerText = weatherData.current.weather[0].description;
 };
@@ -96,3 +108,5 @@ const date = document.querySelector('.date');
 
 form.addEventListener('submit', getLocation);
 tempContainer.addEventListener('click', toggleFahrenheit);
+
+window.addEventListener('load', displayDefaultCity);
