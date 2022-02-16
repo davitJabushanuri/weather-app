@@ -3,7 +3,10 @@ const defaultCity = 'Barisakho';
 
 const displayDefaultCity = async () => {
 	const data = await fetch(
-		`http://api.openweathermap.org/geo/1.0/direct?q=${defaultCity}&limit=5&appid=8c43d0ea2c915987d0bd3f665e9427c1`
+		`http://api.openweathermap.org/geo/1.0/direct?q=${defaultCity}&limit=5&appid=${API_KEY}`,
+		{
+			mode: 'cors',
+		}
 	);
 	const response = await data.json();
 	let { name, country } = response[0];
@@ -15,7 +18,10 @@ const displayDefaultCity = async () => {
 const getLocation = async (e) => {
 	e.preventDefault();
 	const data = await fetch(
-		`http://api.openweathermap.org/geo/1.0/direct?q=${search.value}&limit=5&appid=8c43d0ea2c915987d0bd3f665e9427c1`
+		`http://api.openweathermap.org/geo/1.0/direct?q=${search.value}&limit=5&appid=${API_KEY}`,
+		{
+			mode: 'cors',
+		}
 	);
 	const response = await data.json();
 	let { name, country } = response[0];
@@ -26,7 +32,9 @@ const getLocation = async (e) => {
 
 const getWeatherData = async (lat, lon) => {
 	const url = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=metric&exclude=minutely&appid=${API_KEY}`;
-	const data = await fetch(url);
+	const data = await fetch(url, {
+		mode: 'cors',
+	});
 	const weatherData = await data.json();
 	const { icon } = weatherData.current.weather[0];
 	displayDailyWeather(weatherData.daily);
