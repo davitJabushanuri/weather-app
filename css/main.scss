@@ -124,6 +124,7 @@ main {
 	.day {
 		display: flex;
 		justify-content: space-between;
+		align-items: center;
 	}
 }
 
@@ -137,7 +138,8 @@ h3 {
 
 .day-night {
 	display: flex;
-	gap: 1rem;
+	gap: 0.5rem;
+	width: 120px;
 }
 
 .dark {
