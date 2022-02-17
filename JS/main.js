@@ -1,24 +1,24 @@
+let button = document.getElementById('get-location');
+let latText = document.getElementById('latitude');
+let longText = document.getElementById('longitude');
+
+button.addEventListener('click', function () {
+	navigator.geolocation.getCurrentPosition(function (position) {
+		let lat = position.coords.latitude;
+		let long = position.coords.longitude;
+		// getWeatherData(lat, long);
+
+		latText.innerText = lat.toFixed(2);
+		longText.innerText = long.toFixed(2);
+	});
+});
+
 const API_KEY = `8c43d0ea2c915987d0bd3f665e9427c1`;
-const defaultCity = 'Barisakho';
+const defaultCity = 'Barcelona';
 
-const displayDefaultCity = async () => {
+const getLocation = async (city) => {
 	const data = await fetch(
-		`https://api.openweathermap.org/geo/1.0/direct?q=${defaultCity}&limit=5&appid=${API_KEY}`,
-		{
-			mode: 'cors',
-		}
-	);
-	const response = await data.json();
-	let { name, country } = response[0];
-	location.innerText = `${name}, ${country}`;
-	let { lat, lon } = response[0];
-	getWeatherData(lat, lon);
-};
-
-const getLocation = async (e) => {
-	e.preventDefault();
-	const data = await fetch(
-		`https://api.openweathermap.org/geo/1.0/direct?q=${search.value}&limit=5&appid=${API_KEY}`,
+		`https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=${API_KEY}`,
 		{
 			mode: 'cors',
 		}
@@ -103,6 +103,7 @@ const toggleFahrenheit = () => {
 };
 
 const form = document.querySelector('form');
+const search = document.querySelector('#search');
 const temperature = document.querySelector('.temperature');
 const windSpeed = document.querySelector('.wind-speed');
 const humidity = document.querySelector('.humidity-percent');
@@ -114,7 +115,10 @@ const weatherDescription = document.querySelector('.weather-description');
 const weeklyForecast = document.querySelector('.week-container');
 const date = document.querySelector('.date');
 
-form.addEventListener('submit', getLocation);
+form.addEventListener('submit', (e) => {
+	e.preventDefault();
+	getLocation(search.value);
+});
 tempContainer.addEventListener('click', toggleFahrenheit);
 
-window.addEventListener('load', displayDefaultCity);
+window.addEventListener('load', getLocation(defaultCity));
