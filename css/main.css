@@ -40,7 +40,7 @@ main {
 }
 
 .search-container form input:focus {
-  outline: 1px solid #3f3fb9;
+  outline: 1px solid #0d35e7;
 }
 
 .search-container form button {
@@ -64,7 +64,6 @@ main {
   background: #2e3341;
   border-radius: 20px;
   padding: 2rem;
-  margin-bottom: 5rem;
 }
 
 .today-weather-container .today {
@@ -186,7 +185,9 @@ main {
 }
 
 h3 {
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+  font-size: 1.2rem;
 }
 
 .week-icon {
@@ -209,5 +210,26 @@ h3 {
 
 .week-day {
   width: 100px;
+}
+
+#get-location {
+  background-color: #0d35e7;
+  border: none;
+  border-radius: 20px;
+  padding: 6px 14px;
+  color: #fff;
+  cursor: pointer;
+  font-weight: 500;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 0.6rem;
+  margin-bottom: 2rem;
 }
 /*# sourceMappingURL=main.css.map */

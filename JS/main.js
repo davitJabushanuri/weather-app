@@ -1,51 +1,66 @@
-let button = document.getElementById('get-location');
-let latText = document.getElementById('latitude');
-let longText = document.getElementById('longitude');
-
-button.addEventListener('click', function () {
-	navigator.geolocation.getCurrentPosition(function (position) {
-		let lat = position.coords.latitude;
-		let long = position.coords.longitude;
-		// getWeatherData(lat, long);
-
-		latText.innerText = lat.toFixed(2);
-		longText.innerText = long.toFixed(2);
-	});
-});
-
 const API_KEY = `8c43d0ea2c915987d0bd3f665e9427c1`;
-const defaultCity = 'Barcelona';
+const DEFAULT_CITY = 'Barcelona';
 
-const getLocation = async (city) => {
-	const data = await fetch(
-		`https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=${API_KEY}`,
-		{
-			mode: 'cors',
-		}
-	);
-	const response = await data.json();
-	let { name, country } = response[0];
+const displayCurrentLocation = async (lat, lon) => {
+	const url = `https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=5&appid=${API_KEY}`;
+	const data = await fetch(url);
+	const currentLocation = await data.json();
+	const name = currentLocation[0].local_names.en;
+	const country = currentLocation[0].country;
 	location.innerText = `${name}, ${country}`;
-	let { lat, lon } = response[0];
 	getWeatherData(lat, lon);
 };
 
+const getCurrentLocation = () => {
+	try {
+		navigator.geolocation.getCurrentPosition((position) => {
+			let lat = position.coords.latitude;
+			let lon = position.coords.longitude;
+			displayCurrentLocation(lat, lon);
+		});
+	} catch (error) {
+		console.log(error);
+	}
+};
+
+const getLocation = async (city) => {
+	try {
+		const data = await fetch(
+			`https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=${API_KEY}`,
+			{
+				mode: 'cors',
+			}
+		);
+		const response = await data.json();
+		let { name, country } = response[0];
+		location.innerText = `${name}, ${country}`;
+		let { lat, lon } = response[0];
+		getWeatherData(lat, lon);
+	} catch (error) {
+		console.log(error);
+	}
+};
+
 const getWeatherData = async (lat, lon) => {
-	const url = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=metric&exclude=minutely&appid=${API_KEY}`;
-	const data = await fetch(url, {
-		mode: 'cors',
-	});
-	const weatherData = await data.json();
-	const { icon } = weatherData.current.weather[0];
-	displayDailyWeather(weatherData.daily);
-	const epoch = weatherData.current.dt;
-	const a = new Date(epoch * 1000).toDateString();
-	date.innerText = a;
-	temperature.innerText = weatherData.current.temp;
-	windSpeed.innerText = weatherData.current.wind_speed + ' km/h';
-	humidity.innerText = weatherData.current.humidity + ' %';
-	weatherIcon.src = `https://openweathermap.org/img/wn/${icon}@2x.png`;
-	weatherDescription.innerText = weatherData.current.weather[0].description;
+	try {
+		const url = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=metric&exclude=minutely&appid=${API_KEY}`;
+		const data = await fetch(url, {
+			mode: 'cors',
+		});
+		const weatherData = await data.json();
+		const { icon } = weatherData.current.weather[0];
+		displayDailyWeather(weatherData.daily);
+		const epoch = weatherData.current.dt;
+		const a = new Date(epoch * 1000).toDateString();
+		date.innerText = a;
+		temperature.innerText = weatherData.current.temp;
+		windSpeed.innerText = weatherData.current.wind_speed + ' km/h';
+		humidity.innerText = weatherData.current.humidity + ' %';
+		weatherIcon.src = `https://openweathermap.org/img/wn/${icon}@2x.png`;
+		weatherDescription.innerText = weatherData.current.weather[0].description;
+	} catch (error) {
+		console.log(error);
+	}
 };
 
 const displayDailyWeather = (days) => {
@@ -114,6 +129,7 @@ const unit = document.querySelector('.unit');
 const weatherDescription = document.querySelector('.weather-description');
 const weeklyForecast = document.querySelector('.week-container');
 const date = document.querySelector('.date');
+const getMyLocation = document.querySelector('#get-location');
 
 form.addEventListener('submit', (e) => {
 	e.preventDefault();
@@ -121,4 +137,9 @@ form.addEventListener('submit', (e) => {
 });
 tempContainer.addEventListener('click', toggleFahrenheit);
 
-window.addEventListener('load', getLocation(defaultCity));
+window.addEventListener('load', getLocation(DEFAULT_CITY));
+
+getMyLocation.addEventListener('click', (e) => {
+	e.preventDefault();
+	getCurrentLocation();
+});
