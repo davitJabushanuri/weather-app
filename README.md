@@ -46,7 +46,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://davitjabushanuri.github.io/qr-code-component/)
+[![Product Name Screen Shot][product-screenshot]](https://davitjabushanuri.github.io/weather-app/)
 
 ### Built With
 
